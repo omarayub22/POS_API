@@ -33,7 +33,18 @@ namespace API_TEST.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>>PostProducts([FromBody] Product product)
         {
-            var newProduct = await _productRepository.Create(product);
+            Product prod = new Product
+            {
+                Product_Name = product.Product_Name,
+                Description = product.Description,
+                Freight = product.Freight,
+                Custom = product.Custom,
+                Repair = product.Repair,
+                PriceSell = product.PriceSell,
+                PricePurchase = product.Freight + product.Custom + product.Repair,
+
+            };
+            var newProduct = await _productRepository.Create(prod);
             return CreatedAtAction(nameof(GetProducts), new { id = newProduct.ProductId }, newProduct);
         }
         [HttpPut]
@@ -57,9 +68,7 @@ namespace API_TEST.Controllers
                 return NotFound();
             await _productRepository.Delete(productToDelete.ProductId);
             return NoContent();
-            {
-
-            }
+            
         }
     }
 }

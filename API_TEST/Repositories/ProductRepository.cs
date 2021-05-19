@@ -17,6 +17,15 @@ namespace API_TEST.Repositories
 
         public async Task<Product> Create (Product product)
         {
+            //Product prod = new Product {
+            //    Product_Name=product.Product_Name,
+            //    Freight=product.Freight,
+            //    Custom = product.Custom,
+            //    Repair = product.Repair,
+            //    PriceSell = product.PriceSell,
+            //    PricePurchase = product.Freight+ product.Custom+ product.Repair,
+
+            //};
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
             return product;
