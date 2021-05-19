@@ -49,16 +49,22 @@ namespace API_TEST.Data.Migrations
                     b.Property<decimal>("Freight")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("PricePurchase")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PriceSell")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Product_Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Profit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("Repair")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalCost")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");

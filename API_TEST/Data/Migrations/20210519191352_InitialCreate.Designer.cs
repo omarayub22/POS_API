@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_TEST.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210518112221_InitialCreate")]
+    [Migration("20210519191352_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,16 +51,22 @@ namespace API_TEST.Data.Migrations
                     b.Property<decimal>("Freight")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("PricePurchase")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PriceSell")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Product_Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Profit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("Repair")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("SalePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalCost")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ProductId");

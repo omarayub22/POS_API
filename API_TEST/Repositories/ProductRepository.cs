@@ -33,7 +33,7 @@ namespace API_TEST.Repositories
 
         public async Task Delete(int id)
         {
-            var productToDelete = await _context.Products.FindAsync();
+            var productToDelete = await _context.Products.FindAsync(id);
             _context.Products.Remove(productToDelete);
             await _context.SaveChangesAsync();
 

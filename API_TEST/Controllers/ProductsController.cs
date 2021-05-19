@@ -37,11 +37,13 @@ namespace API_TEST.Controllers
             {
                 Product_Name = product.Product_Name,
                 Description = product.Description,
+                PurchasePrice = product.PurchasePrice,
                 Freight = product.Freight,
                 Custom = product.Custom,
                 Repair = product.Repair,
-                PriceSell = product.PriceSell,
-                PricePurchase = product.Freight + product.Custom + product.Repair,
+                SalePrice = product.SalePrice,
+                TotalCost = product.Freight + product.Custom + product.Repair +product.PurchasePrice,
+                Profit = product.SalePrice - (product.TotalCost = product.Freight + product.Custom + product.Repair +product.PurchasePrice),
 
             };
             var newProduct = await _productRepository.Create(prod);
@@ -60,7 +62,7 @@ namespace API_TEST.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             var productToDelete = await _productRepository.Get(id);
