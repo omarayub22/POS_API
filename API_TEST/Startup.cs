@@ -31,6 +31,7 @@ namespace API_TEST
             services.AddScoped<IProductRepository,ProductRepository>();
             services.AddDbContext<DataContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API_TEST", Version = "v1" });
@@ -48,6 +49,7 @@ namespace API_TEST
             }
 
             app.UseRouting();
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
             app.UseAuthorization();
 // Middleware to use the endpoints
