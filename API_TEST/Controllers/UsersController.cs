@@ -1,5 +1,6 @@
 ﻿using API_TEST.Data;
 using API_TEST.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace API_TEST.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsersController : ControllerBase
+    //[Route("api/[controller]")]
+    //[ApiController]
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
 
@@ -23,6 +24,7 @@ namespace API_TEST.Controllers
 
         // adding endpoints here
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
@@ -30,7 +32,7 @@ namespace API_TEST.Controllers
             //var users = _context.Users.ToList();
             //return users;
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
